@@ -2,12 +2,14 @@ package android.example.simplemathgame;
 
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
-
+import android.widget.Toast;
 import java.util.ArrayList;
 import java.util.Random;
+import java.util.logging.ConsoleHandler;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -17,6 +19,23 @@ public class MainActivity extends AppCompatActivity {
     Button buttonNumber3;
     TextView textViewMathProblem;
     ArrayList<Integer> answerMathProblem = new ArrayList<>();
+    int locationForCorrectAnswer;
+
+    public void onClickAnswer(View v)
+    {
+
+        String correctAnswer = Integer.toString(locationForCorrectAnswer);
+        String tag = v.getTag().toString();
+
+        Toast toastWinMessage = Toast.makeText(getApplicationContext(), "Success!", Toast.LENGTH_SHORT);
+
+        Log.i("Tag:", tag + " " + correctAnswer);
+
+        if (tag.equals(correctAnswer))
+        {
+            toastWinMessage.show();
+        }
+    }
 
     public void onClickStart(View v)
     {
@@ -48,16 +67,16 @@ public class MainActivity extends AppCompatActivity {
 
         textViewMathProblem.setText(A + " + " + B);
 
-        int locationForCorrectAnswer = randomNumber.nextInt(2) + 1;
+        locationForCorrectAnswer = randomNumber.nextInt(3);
 
-        answerMathProblem.add(wrongAnswerOne);
-        answerMathProblem.add(wrongAnswerTwo);
-        answerMathProblem.add(wrongAnswerThree);
-        answerMathProblem.add(locationForCorrectAnswer, correctAnswerNumber);
+        answerMathProblem.add(wrongAnswerOne); //0
+        answerMathProblem.add(wrongAnswerTwo); //1
+        answerMathProblem.add(wrongAnswerThree); //2
+        answerMathProblem.set(locationForCorrectAnswer, correctAnswerNumber);
 
-        buttonNumber1.setText(Integer.toString(answerMathProblem.get(1)));
-        buttonNumber2.setText(Integer.toString(answerMathProblem.get(2)));
-        buttonNumber3.setText(Integer.toString(answerMathProblem.get(3)));
+        buttonNumber1.setText(Integer.toString(answerMathProblem.get(0)));
+        buttonNumber2.setText(Integer.toString(answerMathProblem.get(1)));
+        buttonNumber3.setText(Integer.toString(answerMathProblem.get(2)));
 
     }
 }
