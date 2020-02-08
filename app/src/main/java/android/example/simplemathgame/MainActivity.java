@@ -25,7 +25,6 @@ public class MainActivity extends AppCompatActivity {
     int locationForCorrectAnswer;
     int score;
     int totalQuestions;
-    int questionCounter = 1;
     int guessesCounter;
     CountDownTimer timer;
     Toast toastTimeIsUp;
@@ -86,9 +85,9 @@ public class MainActivity extends AppCompatActivity {
         String correctAnswer = Integer.toString(locationForCorrectAnswer);
         String tag = v.getTag().toString();
 
-        Log.i("Tag:", tag + " " + correctAnswer + " " + guessesCounter + " " + questionCounter);
+        Log.i("Tag:", tag + " " + correctAnswer + " " + guessesCounter + " " + totalQuestions);
 
-        if (guessesCounter == 0)
+        if (guessesCounter == 1)
         {
             toastOutOfGuessesMessage.setGravity(1, 0, 120);
             toastOutOfGuessesMessage.show();
