@@ -21,7 +21,6 @@ public class MainActivity extends AppCompatActivity {
     TextView textViewMathProblem;
     TextView textViewScore;
     TextView textViewSecondsCounter;
-    TextView textViewGuessesLeft;
     ArrayList<Integer> answerMathProblem = new ArrayList<>();
     int locationForCorrectAnswer;
     int score;
@@ -29,20 +28,26 @@ public class MainActivity extends AppCompatActivity {
     int questionCounter = 1;
     int guessesCounter;
     CountDownTimer timer;
+    Toast toastTimeIsUp;
+    Toast toastWinMessage;
+    Toast toastOutOfGuessesMessage;
+    Toast toastGuessesLeft;
 
     public void resetGame()
     {
+        toastTimeIsUp.cancel();
+        toastOutOfGuessesMessage.cancel();
+        toastWinMessage.cancel();
+        toastGuessesLeft.cancel();
         buttonStart.setVisibility(View.INVISIBLE);
         buttonNumber1.setVisibility(View.VISIBLE);
         buttonNumber2.setVisibility(View.VISIBLE);
         buttonNumber3.setVisibility(View.VISIBLE);
         textViewMathProblem.setVisibility(View.VISIBLE);
         textViewSecondsCounter.setVisibility(View.VISIBLE);
-        textViewGuessesLeft.setVisibility(View.VISIBLE);
         score = 0;
         guessesCounter = 25;
         textViewScore.setText(Integer.toString(score) + "/" + Integer.toString(totalQuestions));
-        textViewGuessesLeft.setText(Integer.toString(guessesCounter) + " Guesses Left");
         timer.start();
     }
 
@@ -80,17 +85,20 @@ public class MainActivity extends AppCompatActivity {
         String correctAnswer = Integer.toString(locationForCorrectAnswer);
         String tag = v.getTag().toString();
 
-        Toast toastWinMessage = Toast.makeText(getApplicationContext(), "Success!", Toast.LENGTH_SHORT);
-        Toast toastOutOfGuessesMessage = Toast.makeText(getApplicationContext(), "All Guesses Used", Toast.LENGTH_SHORT);
-
         Log.i("Tag:", tag + " " + correctAnswer + " " + guessesCounter);
 
         guessesCounter--;
-        textViewGuessesLeft.setText(guessesCounter + " Guesses Left");
+
+        if (guessesCounter > 1)
+        {
+            toastGuessesLeft.setText(Integer.toString(guessesCounter) + " Guesses Left");
+            toastGuessesLeft.show();
+        }
 
         if (guessesCounter == 1)
         {
-            textViewGuessesLeft.setText(guessesCounter + " Guess Left");
+            toastGuessesLeft.setText(Integer.toString(guessesCounter) + " Guess Left");
+            toastGuessesLeft.show();
         }
 
         if (guessesCounter == 0)
@@ -104,7 +112,6 @@ public class MainActivity extends AppCompatActivity {
             buttonNumber3.setVisibility(View.INVISIBLE);
             textViewMathProblem.setVisibility(View.INVISIBLE);
             textViewSecondsCounter.setVisibility(View.INVISIBLE);
-            textViewGuessesLeft.setVisibility(View.INVISIBLE);
         }
 
         if (tag.equals(correctAnswer) && questionCounter != 20)
@@ -144,14 +151,16 @@ public class MainActivity extends AppCompatActivity {
         textViewMathProblem = findViewById(R.id.textViewMathProblem);
         textViewScore = findViewById(R.id.textViewScore);
         textViewSecondsCounter = findViewById(R.id.textViewSecondsCounter);
-        textViewGuessesLeft = findViewById(R.id.textViewGuessesLeft);
+
+        toastTimeIsUp = Toast.makeText(getApplicationContext(), "Time is up", Toast.LENGTH_SHORT);
+        toastWinMessage = Toast.makeText(getApplicationContext(), "Success!", Toast.LENGTH_SHORT);
+        toastOutOfGuessesMessage = Toast.makeText(getApplicationContext(), "All Guesses Used", Toast.LENGTH_SHORT);
+        toastGuessesLeft = Toast.makeText(getApplicationContext(), String.valueOf(guessesCounter), Toast.LENGTH_SHORT);
 
         addQuestion();
 
         timer = new CountDownTimer(60100, 100)
         {
-            Toast timeIsUp = Toast.makeText(getApplicationContext(), "Time is up", Toast.LENGTH_SHORT);
-
             @Override
             public void onTick(long millisUntilFinished)
             {
@@ -162,8 +171,8 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onFinish()
             {
-                timeIsUp.setGravity(1,0, 120);
-                timeIsUp.show();
+                toastTimeIsUp.setGravity(1,0, 120);
+                toastTimeIsUp.show();
                 textViewSecondsCounter.setText("");
                 buttonStart.setVisibility(View.VISIBLE);
                 buttonNumber1.setVisibility(View.INVISIBLE);
@@ -171,7 +180,6 @@ public class MainActivity extends AppCompatActivity {
                 buttonNumber3.setVisibility(View.INVISIBLE);
                 textViewMathProblem.setVisibility(View.INVISIBLE);
                 textViewSecondsCounter.setVisibility(View.INVISIBLE);
-                textViewGuessesLeft.setVisibility(View.INVISIBLE);
             }
         };
 
