@@ -24,7 +24,7 @@ public class MainActivity extends AppCompatActivity {
     ArrayList<Integer> answerMathProblem = new ArrayList<>();
     int locationForCorrectAnswer;
     int score;
-    int totalQuestions = 20;
+    int totalQuestions;
     int questionCounter = 1;
     int guessesCounter;
     CountDownTimer timer;
@@ -45,6 +45,7 @@ public class MainActivity extends AppCompatActivity {
         buttonNumber3.setVisibility(View.VISIBLE);
         textViewMathProblem.setVisibility(View.VISIBLE);
         textViewSecondsCounter.setVisibility(View.VISIBLE);
+        totalQuestions = 0;
         score = 0;
         guessesCounter = 25;
         textViewScore.setText(Integer.toString(score) + "/" + Integer.toString(totalQuestions));
@@ -85,21 +86,7 @@ public class MainActivity extends AppCompatActivity {
         String correctAnswer = Integer.toString(locationForCorrectAnswer);
         String tag = v.getTag().toString();
 
-        Log.i("Tag:", tag + " " + correctAnswer + " " + guessesCounter);
-
-        guessesCounter--;
-
-        if (guessesCounter > 1)
-        {
-            toastGuessesLeft.setText(Integer.toString(guessesCounter) + " Guesses Left");
-            toastGuessesLeft.show();
-        }
-
-        if (guessesCounter == 1)
-        {
-            toastGuessesLeft.setText(Integer.toString(guessesCounter) + " Guess Left");
-            toastGuessesLeft.show();
-        }
+        Log.i("Tag:", tag + " " + correctAnswer + " " + guessesCounter + " " + questionCounter);
 
         if (guessesCounter == 0)
         {
@@ -114,22 +101,41 @@ public class MainActivity extends AppCompatActivity {
             textViewSecondsCounter.setVisibility(View.INVISIBLE);
         }
 
-        if (tag.equals(correctAnswer) && questionCounter != 20)
+        if (tag.equals(correctAnswer))
         {
             score++;
-            textViewScore.setText(Integer.toString(score) + "/" + Integer.toString(totalQuestions));
-            toastWinMessage.setGravity(1, 0, 120);
-            toastWinMessage.show();
+            //toastWinMessage.setGravity(1,0, 140);
+            //toastWinMessage.show();
         }
 
+        if (tag.equals(correctAnswer) == false)
+        {
+            guessesCounter--;
+
+            if (guessesCounter > 1)
+            {
+                toastGuessesLeft.setText(Integer.toString(guessesCounter) + " Guesses Left");
+                toastGuessesLeft.show();
+            }
+
+            if (guessesCounter == 1)
+            {
+                toastGuessesLeft.setText(Integer.toString(guessesCounter) + " Guess Left");
+                toastGuessesLeft.show();
+            }
+        }
+
+        /*
         if (questionCounter != 20)
         {
             questionCounter++;
             addQuestion();
         }
+        */
 
-
-
+        totalQuestions++;
+        textViewScore.setText(Integer.toString(score) + "/" + Integer.toString(totalQuestions));
+        addQuestion();
     }
 
     public void onClickStart(View v)
@@ -171,7 +177,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onFinish()
             {
-                toastTimeIsUp.setGravity(1,0, 120);
+                toastTimeIsUp.setGravity(1,0, 160);
                 toastTimeIsUp.show();
                 textViewSecondsCounter.setText("");
                 buttonStart.setVisibility(View.VISIBLE);
