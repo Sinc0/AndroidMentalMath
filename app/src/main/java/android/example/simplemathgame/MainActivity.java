@@ -31,6 +31,11 @@ public class MainActivity extends AppCompatActivity {
     Button buttonNumber1;
     Button buttonNumber2;
     Button buttonNumber3;
+    Button buttonSubtraction;
+    Button buttonMultiplication;
+    Button buttonDivision;
+    Button buttonPercentages;
+    Button buttonSquareRoot;
     TextView textViewMathProblem;
     TextView textViewScore;
     TextView textViewSecondsCounter;
@@ -50,6 +55,12 @@ public class MainActivity extends AppCompatActivity {
 
         //widgets
         buttonStart = findViewById(R.id.buttonStart);
+        buttonSubtraction = findViewById(R.id.buttonSubtraction);
+        buttonMultiplication = findViewById(R.id.buttonMultiplication);
+        buttonDivision = findViewById(R.id.buttonDivision);
+        buttonPercentages = findViewById(R.id.buttonPercentages);
+        buttonSquareRoot = findViewById(R.id.buttonSquareRoot);
+
         buttonNumber1 = findViewById(R.id.buttonNumber1);
         buttonNumber2 = findViewById(R.id.buttonNumber2);
         buttonNumber3 = findViewById(R.id.buttonNumber3);
@@ -102,7 +113,14 @@ public class MainActivity extends AppCompatActivity {
         toastOutOfGuessesMessage.cancel();
         toastWinMessage.cancel();
         toastGuessesLeft.cancel();
+
         buttonStart.setVisibility(View.INVISIBLE);
+        buttonSubtraction.setVisibility(View.INVISIBLE);
+        buttonMultiplication.setVisibility(View.INVISIBLE);
+        buttonDivision.setVisibility(View.INVISIBLE);
+        buttonPercentages.setVisibility(View.INVISIBLE);
+        buttonSquareRoot.setVisibility(View.INVISIBLE);
+
         buttonNumber1.setVisibility(View.VISIBLE);
         buttonNumber2.setVisibility(View.VISIBLE);
         buttonNumber3.setVisibility(View.VISIBLE);
