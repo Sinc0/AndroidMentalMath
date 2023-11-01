@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -8,67 +9,55 @@
     android:background="#0FA509"
     tools:context=".MainActivity">
 
-    <LinearLayout
-        android:id="@+id/linearLayout0"
+    <!-- Math Problem -->
+    <TextView
+        android:id="@+id/textViewMathProblem"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:gravity="center"
-        android:orientation="horizontal"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="149dp"
+        android:layout_marginRight="10dp"
+        android:background="@android:color/transparent"
+        android:padding="10dp"
+        android:text="n + n"
+        android:textColor="#ffffff"
+        android:textSize="36sp"
+        android:textStyle="bold"
+        android:visibility="invisible"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent" />
 
-        <TextView
-            android:id="@+id/textViewSecondsCounter"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="0dp"
-            android:layout_marginTop="0dp"
-            android:padding="10dp"
-            android:text="60"
-            android:textColor="#000000"
-            android:textSize="36sp"
-            android:textStyle="bold"
-            android:visibility="visible"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+    <!-- Counter -->
+    <TextView
+        android:id="@+id/textViewSecondsCounter"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="20dp"
+        android:text="60"
+        android:textColor="#000000"
+        android:textSize="36sp"
+        android:textStyle="bold"
+        android:visibility="invisible"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
-        <TextView
-            android:id="@+id/textViewMathProblem"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
-            android:layout_marginTop="0dp"
-            android:layout_marginRight="10dp"
-            android:background="@android:color/transparent"
-            android:padding="10dp"
-            android:text="n + n"
-            android:textColor="#ffffff"
-            android:textSize="36sp"
-            android:textStyle="bold"
-            android:visibility="visible"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+    <!-- Score -->
+    <TextView
+        android:id="@+id/textViewScore"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="20dp"
+        android:text="0/0"
+        android:textColor="#000000"
+        android:textSize="36sp"
+        android:textStyle="bold"
+        android:visibility="invisible"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
-        <TextView
-            android:id="@+id/textViewScore"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="0dp"
-            android:layout_marginEnd="0dp"
-            android:padding="20dp"
-            android:text="0/0"
-            android:textColor="#000000"
-            android:textSize="36sp"
-            android:textStyle="bold"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-    </LinearLayout>
-
+    <!-- LL1 -->
     <LinearLayout
         android:id="@+id/linearLayout1"
         android:layout_width="wrap_content"
@@ -79,6 +68,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
+        <!-- Button Addition -->
         <Button
             android:id="@+id/buttonStart"
             style="@android:style/Widget.Button"
@@ -86,17 +76,19 @@
             android:layout_height="80dp"
             android:layout_marginRight="2dp"
             android:background="#000000"
-            android:onClick="onClickStart"
+            android:onClick="startGame"
             android:text="+"
             android:textColor="#ffffff"
             android:textSize="38sp"
             android:textStyle="bold"
+            android:tag="Addition"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
+        <!-- Button Subtraction -->
         <Button
             android:id="@+id/buttonSubtraction"
             style="@android:style/Widget.Button"
@@ -104,28 +96,31 @@
             android:layout_height="80dp"
             android:layout_marginRight="2dp"
             android:background="#000000"
-            android:onClick="onClickStart"
+            android:onClick="startGame"
             android:text="-"
             android:textColor="#ffffff"
             android:textSize="38sp"
             android:textStyle="bold"
+            android:tag="Subtraction"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
+        <!-- Button Multiplication -->
         <Button
             android:id="@+id/buttonMultiplication"
             style="@android:style/Widget.Button"
             android:layout_width="80dp"
             android:layout_height="80dp"
             android:background="#000000"
-            android:onClick="onClickStart"
+            android:onClick=""
             android:text="×"
             android:textColor="#ffffff"
             android:textSize="38sp"
             android:textStyle="bold"
+            android:tag="Multiplication"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
@@ -133,6 +128,7 @@
             app:layout_constraintTop_toTopOf="parent" />
     </LinearLayout>
 
+    <!-- LL2 -->
     <LinearLayout
         android:id="@+id/linearLayout2"
         android:layout_width="wrap_content"
@@ -144,6 +140,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/linearLayout1">
 
+        <!-- Button Division -->
         <Button
             android:id="@+id/buttonDivision"
             style="@android:style/Widget.Button"
@@ -151,17 +148,19 @@
             android:layout_height="80dp"
             android:layout_marginRight="2dp"
             android:background="#000000"
-            android:onClick="onClickStart"
+            android:onClick=""
             android:text="÷"
             android:textColor="#ffffff"
             android:textSize="38sp"
             android:textStyle="bold"
+            android:tag="Division"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
+        <!-- Button Percentages -->
         <Button
             android:id="@+id/buttonPercentages"
             style="@android:style/Widget.Button"
@@ -169,28 +168,31 @@
             android:layout_height="80dp"
             android:layout_marginRight="2dp"
             android:background="#000000"
-            android:onClick="onClickStart"
+            android:onClick=""
             android:text="%"
             android:textColor="#ffffff"
             android:textSize="38sp"
             android:textStyle="bold"
+            android:tag="Percentages"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
+        <!-- Button Square Root -->
         <Button
             android:id="@+id/buttonSquareRoot"
             style="@android:style/Widget.Button"
             android:layout_width="80dp"
             android:layout_height="80dp"
             android:background="#000000"
-            android:onClick="onClickStart"
+            android:onClick=""
             android:text="√"
             android:textColor="#ffffff"
             android:textSize="38sp"
             android:textStyle="bold"
+            android:tag="SquareRoot"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
@@ -198,23 +200,24 @@
             app:layout_constraintTop_toTopOf="parent" />
     </LinearLayout>
 
-
+    <!-- LL3 -->
     <LinearLayout
-        android:id="@+id/linearLayout4"
+        android:id="@+id/linearLayout3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:gravity="center"
         android:orientation="horizontal"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/linearLayout1">
+        app:layout_constraintTop_toTopOf="@id/linearLayout1">
 
+        <!-- Button Answer 1 -->
         <Button
             android:id="@+id/buttonNumber1"
             android:layout_width="100dp"
             android:layout_height="100dp"
             android:background="#BE1D1D"
-            android:onClick="onClickAnswer"
+            android:onClick="selectAnswer"
             android:tag="0"
             android:text="1"
             android:textColor="#000000"
@@ -225,6 +228,7 @@
             app:layout_constraintEnd_toStartOf="@+id/buttonNumber2"
             app:layout_constraintTop_toTopOf="parent" />
 
+        <!-- Button Answer 2 -->
         <Button
             android:id="@+id/buttonNumber2"
             android:layout_width="100dp"
@@ -232,7 +236,7 @@
             android:layout_marginLeft="2dp"
             android:layout_marginRight="2dp"
             android:background="#45D3F6"
-            android:onClick="onClickAnswer"
+            android:onClick="selectAnswer"
             android:tag="1"
             android:text="2"
             android:textColor="#000000"
@@ -245,12 +249,13 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
+        <!-- Button Answer 3 -->
         <Button
             android:id="@+id/buttonNumber3"
             android:layout_width="100dp"
             android:layout_height="100dp"
             android:background="#F8D555"
-            android:onClick="onClickAnswer"
+            android:onClick="selectAnswer"
             android:tag="2"
             android:text="3"
             android:textColor="#000000"
