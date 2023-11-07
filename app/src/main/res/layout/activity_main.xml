@@ -4,267 +4,506 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/MainLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#0FA509"
+    android:background="#99000000"
+    android:visibility="visible"
     tools:context=".MainActivity">
 
-    <!-- Math Problem -->
-    <TextView
-        android:id="@+id/textViewMathProblem"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="10dp"
-        android:layout_marginTop="149dp"
-        android:layout_marginRight="10dp"
-        android:background="@android:color/transparent"
-        android:padding="10dp"
-        android:text="n + n"
-        android:textColor="#ffffff"
-        android:textSize="36sp"
-        android:textStyle="bold"
-        android:visibility="invisible"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <!-- Counter -->
-    <TextView
-        android:id="@+id/textViewSecondsCounter"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:padding="20dp"
-        android:text="60"
-        android:textColor="#000000"
-        android:textSize="36sp"
-        android:textStyle="bold"
-        android:visibility="invisible"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <!-- Score -->
-    <TextView
-        android:id="@+id/textViewScore"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:padding="20dp"
-        android:text="0/0"
-        android:textColor="#000000"
-        android:textSize="36sp"
-        android:textStyle="bold"
-        android:visibility="invisible"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <!-- LL1 -->
-    <LinearLayout
-        android:id="@+id/linearLayout1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="280dp"
-        android:orientation="horizontal"
+    <!-- Tab 1: Play -->
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/Tab1"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#009150"
+        android:visibility="visible"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <!-- Button Addition -->
-        <Button
-            android:id="@+id/buttonStart"
-            style="@android:style/Widget.Button"
-            android:layout_width="80dp"
-            android:layout_height="80dp"
-            android:layout_marginRight="2dp"
-            android:background="#000000"
-            android:onClick="startGame"
-            android:text="+"
+        <!-- Text Math Problem -->
+        <TextView
+            android:id="@+id/textViewMathProblem"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="200dp"
+            android:background="@android:color/transparent"
+            android:gravity="center"
+            android:padding="10dp"
+            android:text="n + n"
             android:textColor="#ffffff"
-            android:textSize="38sp"
+            android:textSize="32sp"
             android:textStyle="bold"
-            android:tag="Addition"
-            app:layout_constraintBottom_toBottomOf="parent"
+            android:visibility="invisible"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <!-- Button Subtraction -->
-        <Button
-            android:id="@+id/buttonSubtraction"
-            style="@android:style/Widget.Button"
-            android:layout_width="80dp"
-            android:layout_height="80dp"
-            android:layout_marginRight="2dp"
-            android:background="#000000"
-            android:onClick="startGame"
-            android:text="-"
-            android:textColor="#ffffff"
-            android:textSize="38sp"
+        <!-- Text Timer Countdown -->
+        <TextView
+            android:id="@+id/textViewSecondsCounter"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:padding="20dp"
+            android:text="60"
+            android:textColor="#9A000000"
+            android:textSize="36sp"
             android:textStyle="bold"
-            android:tag="Subtraction"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
+            android:visibility="invisible"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <!-- Button Multiplication -->
-        <Button
-            android:id="@+id/buttonMultiplication"
-            style="@android:style/Widget.Button"
-            android:layout_width="80dp"
-            android:layout_height="80dp"
-            android:background="#000000"
-            android:onClick=""
-            android:text="×"
-            android:textColor="#ffffff"
-            android:textSize="38sp"
+        <!-- Text Correct Answers -->
+        <TextView
+            android:id="@+id/textViewTotalCorrectAnswers"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="20dp"
+            android:text="0"
+            android:textColor="#18DA11"
+            android:textSize="36sp"
             android:textStyle="bold"
-            android:tag="Multiplication"
-            app:layout_constraintBottom_toBottomOf="parent"
+            android:visibility="invisible"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
-    </LinearLayout>
 
-    <!-- LL2 -->
-    <LinearLayout
-        android:id="@+id/linearLayout2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="2dp"
-        android:gravity="center"
-        android:orientation="horizontal"
+        <!-- Text Wrong Answers -->
+        <TextView
+            android:id="@+id/textViewTotalWrongAnswers"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="40dp"
+            android:padding="20dp"
+            android:text="0"
+            android:textColor="#D11010"
+            android:textSize="36sp"
+            android:textStyle="bold"
+            android:visibility="invisible"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <!-- Text Questions Counter -->
+        <TextView
+            android:id="@+id/textViewTotalQuestions"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="80dp"
+            android:padding="20dp"
+            android:text="0"
+            android:textColor="#000000"
+            android:textSize="36sp"
+            android:textStyle="bold"
+            android:visibility="invisible"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <!-- Text Guesses Countdown -->
+        <TextView
+            android:id="@+id/textViewTotalGuessesLeft"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="120dp"
+            android:padding="20dp"
+            android:text="0"
+            android:textColor="#ffffff"
+            android:textSize="36sp"
+            android:textStyle="bold"
+            android:visibility="invisible"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <LinearLayout
+            android:id="@+id/linearLayout1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="100dp"
+            android:orientation="horizontal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/textViewSecondsCounter">
+
+            <!-- Button Addition -->
+            <Button
+                android:id="@+id/buttonStart"
+                style="@android:style/Widget.Button"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:layout_marginRight="2dp"
+                android:background="#000000"
+                android:onClick="startGame"
+                android:tag="Addition"
+                android:text="+"
+                android:textColor="#ffffff"
+                android:textSize="40sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <!-- Button Subtraction -->
+            <Button
+                android:id="@+id/buttonSubtraction"
+                style="@android:style/Widget.Button"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:layout_marginRight="2dp"
+                android:background="#000000"
+                android:onClick="startGame"
+                android:tag="Subtraction"
+                android:text="-"
+                android:textColor="#ffffff"
+                android:textSize="40sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <!-- Button Multiplication -->
+            <Button
+                android:id="@+id/buttonMultiplication"
+                style="@android:style/Widget.Button"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:background="#000000"
+                android:onClick="startGame"
+                android:tag="Multiplication"
+                android:text="×"
+                android:textColor="#ffffff"
+                android:textSize="40sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/linearLayout2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="2dp"
+            android:orientation="horizontal"
+            app:layout_constraintEnd_toEndOf="@id/linearLayout1"
+            app:layout_constraintTop_toBottomOf="@id/linearLayout1">
+
+            <!-- Button Division -->
+            <Button
+                android:id="@+id/buttonDivision"
+                style="@android:style/Widget.Button"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:layout_marginRight="2dp"
+                android:background="#000000"
+                android:onClick="startGame"
+                android:tag="Division"
+                android:text="÷"
+                android:textColor="#ffffff"
+                android:textSize="40sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <!-- Button Percentages -->
+            <Button
+                android:id="@+id/buttonPercentages"
+                style="@android:style/Widget.Button"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:layout_marginRight="2dp"
+                android:background="#000000"
+                android:onClick="startGame"
+                android:tag="Percentages"
+                android:text="%"
+                android:textColor="#ffffff"
+                android:textSize="34sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <!-- Button Square Root -->
+            <Button
+                android:id="@+id/buttonSquareRoot"
+                style="@android:style/Widget.Button"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:background="#000000"
+                android:onClick="startGame"
+                android:tag="SquareRoot"
+                android:text="√"
+                android:textColor="#ffffff"
+                android:textSize="36sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/linearLayout3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:gravity="center"
+            android:orientation="vertical"
+            app:layout_constraintTop_toBottomOf="@id/textViewMathProblem">
+
+            <!-- Button Answer 1 -->
+            <Button
+                android:id="@+id/buttonNumber1"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:background="#BE1D1D"
+                android:onClick="selectAnswer"
+                android:tag="0"
+                android:text="1"
+                android:textColor="#ffffff"
+                android:textSize="28sp"
+                android:textStyle="bold"
+                android:visibility="invisible"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/buttonNumber2"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <!-- Button Answer 2 -->
+            <Button
+                android:id="@+id/buttonNumber2"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:layout_margin="3dp"
+                android:background="#45D3F6"
+                android:onClick="selectAnswer"
+                android:tag="1"
+                android:text="2"
+                android:textColor="#ffffff"
+                android:textSize="28sp"
+                android:textStyle="bold"
+                android:visibility="invisible"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <!-- Button Answer 3 -->
+            <Button
+                android:id="@+id/buttonNumber3"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:background="#F8D555"
+                android:onClick="selectAnswer"
+                android:tag="2"
+                android:text="3"
+                android:textColor="#ffffff"
+                android:textSize="28sp"
+                android:textStyle="bold"
+                android:visibility="invisible"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/buttonNumber2"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        </LinearLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <!-- Tab 2: History -->
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/Tab2"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#009150"
+        android:visibility="invisible"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/linearLayout1">
+        app:layout_constraintTop_toTopOf="parent">
 
-        <!-- Button Division -->
-        <Button
-            android:id="@+id/buttonDivision"
-            style="@android:style/Widget.Button"
-            android:layout_width="80dp"
-            android:layout_height="80dp"
-            android:layout_marginRight="2dp"
-            android:background="#000000"
-            android:onClick=""
-            android:text="÷"
+        <!-- Stats -->
+        <TextView
+            android:id="@+id/textViewStatsTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:text="Stats"
             android:textColor="#ffffff"
-            android:textSize="38sp"
+            android:textSize="26sp"
             android:textStyle="bold"
-            android:tag="Division"
-            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <!-- Button Percentages -->
-        <Button
-            android:id="@+id/buttonPercentages"
-            style="@android:style/Widget.Button"
-            android:layout_width="80dp"
-            android:layout_height="80dp"
-            android:layout_marginRight="2dp"
-            android:background="#000000"
-            android:onClick=""
-            android:text="%"
+        <TextView
+            android:id="@+id/textViewStatsText"
+            android:layout_width="400dp"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="ADD Avg: \nSUB Avg: \nMUL Avg: \nDIV Avg: \nPER Avg: \nSQU Avg: "
             android:textColor="#ffffff"
-            android:textSize="38sp"
-            android:textStyle="bold"
-            android:tag="Percentages"
-            app:layout_constraintBottom_toBottomOf="parent"
+            android:textSize="20sp"
+            android:textStyle="normal"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toBottomOf="@id/textViewStatsTitle" />
 
-        <!-- Button Square Root -->
-        <Button
-            android:id="@+id/buttonSquareRoot"
-            style="@android:style/Widget.Button"
-            android:layout_width="80dp"
-            android:layout_height="80dp"
-            android:background="#000000"
-            android:onClick=""
-            android:text="√"
+        <!-- History -->
+        <TextView
+            android:id="@+id/textViewHistoryTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:text="History"
             android:textColor="#ffffff"
-            android:textSize="38sp"
+            android:textSize="26sp"
             android:textStyle="bold"
-            android:tag="SquareRoot"
-            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-    </LinearLayout>
+            app:layout_constraintTop_toBottomOf="@id/textViewStatsText" />
 
-    <!-- LL3 -->
-    <LinearLayout
-        android:id="@+id/linearLayout3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:orientation="horizontal"
+        <ScrollView
+            android:id="@+id/scrollViewHistory"
+            android:layout_width="360dp"
+            android:layout_height="160dp"
+            android:layout_marginTop="40dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@id/textViewHistoryTitle">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center|top"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/textViewHistoryText"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="0dp"
+                    android:layout_marginTop="0dp"
+                    android:gravity="center"
+                    android:text="#0 - MUL - 20% - 3 Nov 2023"
+                    android:textColor="#ffffff"
+                    android:textSize="20sp"
+                    android:textStyle="normal" />
+            </LinearLayout>
+        </ScrollView>
+
+        <!-- Button Reset Data -->
+        <Button
+            android:id="@+id/button"
+            style="@android:style/Widget.Button"
+            android:layout_width="160dp"
+            android:layout_height="49dp"
+            android:layout_marginTop="40dp"
+            android:background="#000000"
+            android:onClick="clearGameHistory"
+            android:text="Reset Data"
+            android:textColor="#ffffff"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/scrollViewHistory" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <!-- Tab 3: About -->
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/Tab3"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#009150"
+        android:visibility="invisible"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@id/linearLayout1">
+        app:layout_constraintTop_toTopOf="parent">
 
-        <!-- Button Answer 1 -->
+        <!-- About -->
+        <TextView
+            android:id="@+id/textViewAboutTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="40dp"
+            android:text="About"
+            android:textColor="#ffffff"
+            android:textSize="26sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <!-- Bottom Menu -->
+    <LinearLayout
+        android:id="@+id/BottomMenu"
+        android:layout_width="240dp"
+        android:layout_height="80dp"
+        android:layout_marginBottom="20dp"
+        android:gravity="center"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <!-- Button Tab 1 -->
         <Button
-            android:id="@+id/buttonNumber1"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
-            android:background="#BE1D1D"
-            android:onClick="selectAnswer"
-            android:tag="0"
+            android:id="@+id/buttonTab1"
+            style="@android:style/Widget.Button"
+            android:layout_width="40dp"
+            android:layout_height="49dp"
+            android:layout_weight="1"
+            android:background="@android:color/transparent"
+            android:onClick="changeTab"
+            android:tag="Tab1"
             android:text="1"
-            android:textColor="#000000"
-            android:textSize="30sp"
+            android:textSize="34sp"
             android:textStyle="bold"
-            android:visibility="invisible"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/buttonNumber2"
-            app:layout_constraintTop_toTopOf="parent" />
+            tools:visibility="visible" />
 
-        <!-- Button Answer 2 -->
+        <!-- Button Tab 2 -->
         <Button
-            android:id="@+id/buttonNumber2"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
-            android:layout_marginLeft="2dp"
-            android:layout_marginRight="2dp"
-            android:background="#45D3F6"
-            android:onClick="selectAnswer"
-            android:tag="1"
+            android:id="@+id/buttonTab2"
+            style="@android:style/Widget.Button"
+            android:layout_width="40dp"
+            android:layout_height="49dp"
+            android:layout_marginLeft="40dp"
+            android:layout_marginRight="40dp"
+            android:layout_weight="1"
+            android:background="@android:color/transparent"
+            android:onClick="changeTab"
+            android:tag="Tab2"
             android:text="2"
-            android:textColor="#000000"
-            android:textSize="30sp"
+            android:textSize="34sp"
             android:textStyle="bold"
-            android:visibility="invisible"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            android:visibility="visible" />
 
-        <!-- Button Answer 3 -->
+        <!-- Button Tab 3 -->
         <Button
-            android:id="@+id/buttonNumber3"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
-            android:background="#F8D555"
-            android:onClick="selectAnswer"
-            android:tag="2"
+            android:id="@+id/buttonTab3"
+            style="@android:style/Widget.Button"
+            android:layout_width="40dp"
+            android:layout_height="49dp"
+            android:layout_weight="1"
+            android:background="@android:color/transparent"
+            android:onClick="changeTab"
+            android:tag="Tab3"
             android:text="3"
-            android:textColor="#000000"
-            android:textSize="30sp"
+            android:textSize="34sp"
             android:textStyle="bold"
-            android:visibility="invisible"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/buttonNumber2"
-            app:layout_constraintTop_toTopOf="parent" />
+            android:visibility="visible" />
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
