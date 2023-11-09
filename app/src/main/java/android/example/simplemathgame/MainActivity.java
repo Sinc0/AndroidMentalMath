@@ -15,16 +15,19 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
-import org.json.JSONException;
-import org.json.JSONObject;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Objects;
 import java.util.Random;
+import java.util.regex.Pattern;
+import java.util.regex.Matcher;
+import java.text.DecimalFormat;
+import org.json.JSONException;
+import org.json.JSONObject;
+import java.time.LocalDate;
 import java.util.logging.ConsoleHandler;
 
 
@@ -39,11 +42,13 @@ public class MainActivity extends AppCompatActivity {
     int gone = 8;
     int totalCorrectAnswers = 0;
     int totalWrongAnswers = 0;
+    int maxQuestions = 9;
     boolean gameIsActive = false;
     String problemType = "";
 
     //arrays
     ArrayList<Integer> answerMathProblem = new ArrayList<>();
+    ArrayList<Double> answerMathProblemDouble = new ArrayList<>();
 
     //widgets
     Button buttonStart;
@@ -81,7 +86,7 @@ public class MainActivity extends AppCompatActivity {
         //set startup activity
         setContentView(R.layout.activity_main);
 
-        //widgets
+        //set widgets
         buttonStart = findViewById(R.id.buttonStart);
         buttonSubtraction = findViewById(R.id.buttonSubtraction);
         buttonMultiplication = findViewById(R.id.buttonMultiplication);
@@ -104,13 +109,19 @@ public class MainActivity extends AppCompatActivity {
         Tab3 = findViewById(R.id.Tab3);
         BottomMenu = findViewById(R.id.BottomMenu);
 
-        //set toasts
+        //set toast time is up
         toastTimeIsUp = Toast.makeText(getApplicationContext(), "Time is up", Toast.LENGTH_SHORT);
         toastTimeIsUp.setGravity(1,0, 160);
+
+        //set toast out of guesses
         toastOutOfGuessesMessage = Toast.makeText(getApplicationContext(), "All Guesses Used", Toast.LENGTH_SHORT);
         toastOutOfGuessesMessage.setGravity(1, 0, 120);
+
+        //set toast answer correct
         toastWinMessage = Toast.makeText(getApplicationContext(), "Success!", Toast.LENGTH_SHORT);
         toastWinMessage.setGravity(1,0, 140);
+
+        //set toast guesses left
         toastGuessesLeft = Toast.makeText(getApplicationContext(), String.valueOf(guessesCounter), Toast.LENGTH_SHORT);
 
         //set game history
@@ -227,73 +238,269 @@ public class MainActivity extends AppCompatActivity {
         int wrongAnswerTwo = 0;
         int wrongAnswerThree = 0;
         int correctAnswerNumber = 0;
+        double correctAnswerNumberDouble = 0;
+        double wrongAnswerOneDouble = 0;
+        double wrongAnswerTwoDouble = 0;
+        double wrongAnswerThreeDouble = 0;
         String A = "";
         String B = "";
         String mp = "";
         Random randomNumber = new Random();
+
+        //set correct answer location
         locationForCorrectAnswer = randomNumber.nextInt(3);
 
+        //set random numbers
+        numberA = randomNumber.nextInt(99);
+        numberB = randomNumber.nextInt(99);
+
+        //check type
         if(type.equals("Addition"))
         {
-            numberA = randomNumber.nextInt(99);
-            numberB = randomNumber.nextInt(99);
+            //set correct answer
+            correctAnswerNumber = numberA + numberB;
+
+            //set wrong answers
             wrongAnswerOne = 1 + randomNumber.nextInt(99) * 2;
             wrongAnswerTwo = 1 + randomNumber.nextInt(99) * 2;
             wrongAnswerThree = 1 + randomNumber.nextInt(99) * 2;
-            correctAnswerNumber = numberA + numberB;
+
+            //convert from int to string
             A = Integer.toString(numberA);
             B = Integer.toString(numberB);
+
+            //set math problem text
             mp = A + " + " + B;
+
+            //add to array
+            answerMathProblem.clear();
+            answerMathProblem.add(wrongAnswerOne); //0
+            answerMathProblem.add(wrongAnswerTwo); //1
+            answerMathProblem.add(wrongAnswerThree); //2
+            answerMathProblem.set(locationForCorrectAnswer, correctAnswerNumber);
+
+            //update UI
+            buttonNumber1.setText(Integer.toString(answerMathProblem.get(0)));
+            buttonNumber2.setText(Integer.toString(answerMathProblem.get(1)));
+            buttonNumber3.setText(Integer.toString(answerMathProblem.get(2)));
+            textViewMathProblem.setText(mp);
         }
         else if(type.equals("Subtraction"))
         {
-            numberA = randomNumber.nextInt(99);
-            numberB = randomNumber.nextInt(99);
+            //set correct answer
+            correctAnswerNumber = numberA - numberB;
+
+            //set wrong answers
             wrongAnswerOne = 1 + randomNumber.nextInt(99) * 2;
             wrongAnswerTwo = 1 + randomNumber.nextInt(99) * 2;
             wrongAnswerThree = 1 + randomNumber.nextInt(99) * 2;
-            correctAnswerNumber = numberA - numberB;
+
+            //convert from int to string
             A = Integer.toString(numberA);
             B = Integer.toString(numberB);
+
+            //set math problem text
             mp = A + " - " + B;
+
+            //add to array
+            answerMathProblem.clear();
+            answerMathProblem.add(wrongAnswerOne); //0
+            answerMathProblem.add(wrongAnswerTwo); //1
+            answerMathProblem.add(wrongAnswerThree); //2
+            answerMathProblem.set(locationForCorrectAnswer, correctAnswerNumber);
+
+            //update UI
+            buttonNumber1.setText(Integer.toString(answerMathProblem.get(0)));
+            buttonNumber2.setText(Integer.toString(answerMathProblem.get(1)));
+            buttonNumber3.setText(Integer.toString(answerMathProblem.get(2)));
+            textViewMathProblem.setText(mp);
         }
         else if(type.equals("Multiplication"))
         {
-            numberA = randomNumber.nextInt(99);
-            numberB = randomNumber.nextInt(99);
+            //set correct answer
+            correctAnswerNumber = numberA * numberB;
+
+            //set wrong answers
             wrongAnswerOne = 1 + randomNumber.nextInt(99) * 2;
             wrongAnswerTwo = 1 + randomNumber.nextInt(99) * 2;
             wrongAnswerThree = 1 + randomNumber.nextInt(99) * 2;
-            correctAnswerNumber = numberA * numberB;
+
+            //convert from int to string
             A = Integer.toString(numberA);
             B = Integer.toString(numberB);
+
+            //set math problem text
             mp = A + " x " + B;
+
+            //add to array
+            answerMathProblem.clear();
+            answerMathProblem.add(wrongAnswerOne); //0
+            answerMathProblem.add(wrongAnswerTwo); //1
+            answerMathProblem.add(wrongAnswerThree); //2
+            answerMathProblem.set(locationForCorrectAnswer, correctAnswerNumber);
+
+            //update UI
+            buttonNumber1.setText(Integer.toString(answerMathProblem.get(0)));
+            buttonNumber2.setText(Integer.toString(answerMathProblem.get(1)));
+            buttonNumber3.setText(Integer.toString(answerMathProblem.get(2)));
+            textViewMathProblem.setText(mp);
         }
         else if(type.equals("Division"))
         {
+            //set correct answer
+            correctAnswerNumberDouble = (double)numberA / (double)numberB;
 
+            //set wrong answers
+            wrongAnswerOneDouble = correctAnswerNumberDouble * 2;
+            wrongAnswerTwoDouble = correctAnswerNumberDouble * 4;
+            wrongAnswerThreeDouble = correctAnswerNumberDouble * 6;
+
+            //convert from double to string
+            A = Double.toString(numberA);
+            B = Double.toString(numberB);
+
+            //set math problem text
+            mp = A.replace(".0", "") + " / " + B.replace(".0", "");
+
+            //null check for number A
+            if(numberA == 0)
+            {
+                correctAnswerNumberDouble = 0;
+                wrongAnswerOneDouble = (double)1 / 2;
+                wrongAnswerTwoDouble = (double)1 / 4;
+                wrongAnswerThreeDouble = (double)1 / 6;
+            }
+
+            //null check for number B
+            if(numberB == 0)
+            {
+                correctAnswerNumberDouble = (double)numberA;
+                wrongAnswerOneDouble = 1 + ((double)numberA / 2);
+                wrongAnswerTwoDouble = 1 + ((double)numberA / 4);
+                wrongAnswerThreeDouble = 0;
+            }
+
+            //add to array
+            answerMathProblemDouble.clear();
+            answerMathProblemDouble.add(wrongAnswerOneDouble);
+            answerMathProblemDouble.add(wrongAnswerTwoDouble);
+            answerMathProblemDouble.add(wrongAnswerThreeDouble);
+            answerMathProblemDouble.set(locationForCorrectAnswer, correctAnswerNumberDouble);
+
+            //set formatted answer strings
+            String wrongAnswerOneString = formattedDivisionAnswerString(answerMathProblemDouble.get(0));
+            String wrongAnswerTwoString = formattedDivisionAnswerString(answerMathProblemDouble.get(1));
+            String wrongAnswerThreeString = formattedDivisionAnswerString(answerMathProblemDouble.get(2));
+
+            //update UI
+            buttonNumber1.setText(wrongAnswerOneString);
+            buttonNumber2.setText(wrongAnswerTwoString);
+            buttonNumber3.setText(wrongAnswerThreeString);
+            textViewMathProblem.setText(mp);
         }
         else if(type.equals("Percentages"))
         {
+            //null check
+            if(numberB == 0) { numberB = 1; }
+            if(numberA == 0) { numberA = 1; }
 
+            //set correct answer
+            if(numberA == numberB) { correctAnswerNumberDouble = 100; }
+            else { correctAnswerNumberDouble = (double)numberA / (double)numberB; }
+
+            //set wrong answers
+            wrongAnswerOneDouble = correctAnswerNumberDouble * 2;
+            wrongAnswerTwoDouble = correctAnswerNumberDouble * 4;
+            wrongAnswerThreeDouble = correctAnswerNumberDouble * 6;
+
+            //convert from double to string
+            A = Double.toString(numberA);
+            B = Double.toString(numberB);
+
+            //set math problem text
+            mp = A.replace(".0", "") + " of " + B.replace(".0", "");
+
+            //number A correction
+            if(numberA == 1)
+            {
+                correctAnswerNumberDouble = 1 / (double)numberB;
+                wrongAnswerOneDouble = (double)1 / 2;
+                wrongAnswerTwoDouble = (double)1 / 4;
+                wrongAnswerThreeDouble = (double)1 / 6;
+
+                if(numberB < 10) { correctAnswerNumberDouble = correctAnswerNumberDouble * 10; }
+            }
+
+            //number B correction
+            if(numberB == 1)
+            {
+                correctAnswerNumberDouble = (double)numberA * 100;
+                wrongAnswerOneDouble = 1 + ((double)numberA / 2);
+                wrongAnswerTwoDouble = 1 + ((double)numberA / 4);
+                wrongAnswerThreeDouble = 1;
+            }
+
+            //add to array
+            answerMathProblemDouble.clear();
+            answerMathProblemDouble.add(wrongAnswerOneDouble);
+            answerMathProblemDouble.add(wrongAnswerTwoDouble);
+            answerMathProblemDouble.add(wrongAnswerThreeDouble);
+            answerMathProblemDouble.set(locationForCorrectAnswer, correctAnswerNumberDouble);
+
+            //set formatted answer strings
+            String wrongAnswerOneString = formattedPercentagesAnswerString(answerMathProblemDouble.get(0));
+            String wrongAnswerTwoString = formattedPercentagesAnswerString(answerMathProblemDouble.get(1));
+            String wrongAnswerThreeString = formattedPercentagesAnswerString(answerMathProblemDouble.get(2));
+
+            //update UI
+            buttonNumber1.setText(wrongAnswerOneString);
+            buttonNumber2.setText(wrongAnswerTwoString);
+            buttonNumber3.setText(wrongAnswerThreeString);
+            textViewMathProblem.setText(mp);
         }
         else if(type.equals("SquareRoot"))
         {
+            //set correct answer
+            correctAnswerNumberDouble = Math.sqrt(numberA);
 
+            //set wrong answers
+            wrongAnswerOneDouble = correctAnswerNumberDouble * 2;
+            wrongAnswerTwoDouble = correctAnswerNumberDouble / 2;
+            wrongAnswerThreeDouble = correctAnswerNumberDouble * 4;
+
+            //convert from double to string
+            A = Double.toString(numberA);
+
+            //set math problem text
+            mp = "√" + A.replace(".0", "");
+
+            //null check for number A
+            if(numberA == 0)
+            {
+                correctAnswerNumberDouble = 0;
+                wrongAnswerOneDouble = (double)1 / 2;
+                wrongAnswerTwoDouble = (double)1 / 4;
+                wrongAnswerThreeDouble = (double)1 / 6;
+            }
+
+            //add to array
+            answerMathProblemDouble.clear();
+            answerMathProblemDouble.add(wrongAnswerOneDouble);
+            answerMathProblemDouble.add(wrongAnswerTwoDouble);
+            answerMathProblemDouble.add(wrongAnswerThreeDouble);
+            answerMathProblemDouble.set(locationForCorrectAnswer, correctAnswerNumberDouble);
+
+            //set formatted answer strings
+            String wrongAnswerOneString = formattedSquareRootAnswerString(answerMathProblemDouble.get(0));
+            String wrongAnswerTwoString = formattedSquareRootAnswerString(answerMathProblemDouble.get(1));
+            String wrongAnswerThreeString = formattedSquareRootAnswerString(answerMathProblemDouble.get(2));
+
+            //update UI
+            buttonNumber1.setText(wrongAnswerOneString);
+            buttonNumber2.setText(wrongAnswerTwoString);
+            buttonNumber3.setText(wrongAnswerThreeString);
+            textViewMathProblem.setText(mp);
         }
-
-        //set array
-        answerMathProblem.clear();
-        answerMathProblem.add(wrongAnswerOne); //0
-        answerMathProblem.add(wrongAnswerTwo); //1
-        answerMathProblem.add(wrongAnswerThree); //2
-        answerMathProblem.set(locationForCorrectAnswer, correctAnswerNumber);
-
-        //update UI
-        textViewMathProblem.setText(mp);
-        buttonNumber1.setText(Integer.toString(answerMathProblem.get(0)));
-        buttonNumber2.setText(Integer.toString(answerMathProblem.get(1)));
-        buttonNumber3.setText(Integer.toString(answerMathProblem.get(2)));
     }
 
 
@@ -328,7 +535,7 @@ public class MainActivity extends AppCompatActivity {
         //if (guessesCounter == 0) { saveGame(totalQuestions, totalCorrectAnswers); resetGame(); }
 
         //max total questions
-        if(totalQuestions == 9) { saveGame(totalQuestions, totalCorrectAnswers); resetGame(); }
+        if(totalQuestions == maxQuestions) { saveGame(totalQuestions, totalCorrectAnswers); resetGame(); }
 
         //increment total questions
         totalQuestions++;
@@ -490,12 +697,18 @@ public class MainActivity extends AppCompatActivity {
         int totalScoreDIV = 0;
         int totalScorePER = 0;
         int totalScoreSQU = 0;
-        int averageScoreADD = 0;
-        int averageScoreSUB = 0;
-        int averageScoreMUL = 0;
-        int averageScoreDIV = 0;
-        int averageScorePER = 0;
-        int averageScoreSQU = 0;
+        int avgScoreADD = 0;
+        int avgScoreSUB = 0;
+        int avgScoreMUL = 0;
+        int avgScoreDIV = 0;
+        int avgScorePER = 0;
+        int avgScoreSQU = 0;
+        String avgScoreAddString = "";
+        String avgScoreSubString = "";
+        String avgScoreMulString = "";
+        String avgScoreDivString = "";
+        String avgScorePerString = "";
+        String avgScoreSquString = "";
 
         //set total games saved
         totalGamesSaved = storage.getString("totalGamesSaved", "0");
@@ -509,30 +722,31 @@ public class MainActivity extends AppCompatActivity {
             if(gameData.contains("ADD")) { totalGamesADD++; totalScoreADD += gameDataScore; }
             else if(gameData.contains("SUB")) { totalGamesSUB++; totalScoreSUB += gameDataScore; }
             else if(gameData.contains("MUL")) { totalGamesMUL++; totalScoreMUL += gameDataScore; }
-            //else if(gameData.contains("DIV")) { totalGamesDIV++; totalScoreDIV += gameDataScore; }
-            //else if(gameData.contains("PER")) { totalGamesPER++; totalScorePER += gameDataScore; }
-            //else if(gameData.contains("SQU")) { totalGamesSQU++; totalScoreSQU += gameDataScore; }
+            else if(gameData.contains("DIV")) { totalGamesDIV++; totalScoreDIV += gameDataScore; }
+            else if(gameData.contains("PER")) { totalGamesPER++; totalScorePER += gameDataScore; }
+            else if(gameData.contains("SQU")) { totalGamesSQU++; totalScoreSQU += gameDataScore; }
         }
 
         //set average scores
-        if(totalGamesADD != 0) { averageScoreADD = totalScoreADD / totalGamesADD; }
-        if(totalGamesSUB != 0) { averageScoreSUB = totalScoreSUB / totalGamesSUB; }
-        if(totalGamesMUL != 0) { averageScoreMUL = totalScoreMUL / totalGamesMUL; }
-        //averageScoreDIV = totalScoreDIV / totalGamesDIV;
-        //averageScorePER = totalScorePER / totalGamesPER;
-        //averageScoreSQU = totalScoreSQU / totalGamesSQU;
+        if(totalGamesADD != 0) { avgScoreADD = totalScoreADD / totalGamesADD; avgScoreAddString = avgScoreADD + ""; }
+        if(totalGamesSUB != 0) { avgScoreSUB = totalScoreSUB / totalGamesSUB; avgScoreSubString = avgScoreSUB + ""; }
+        if(totalGamesMUL != 0) { avgScoreMUL = totalScoreMUL / totalGamesMUL; avgScoreMulString = avgScoreMUL + ""; }
+        if(totalGamesDIV != 0) { avgScoreDIV = totalScoreDIV / totalGamesDIV; avgScoreDivString = avgScoreDIV + ""; }
+        if(totalGamesPER != 0) { avgScorePER = totalScorePER / totalGamesPER; avgScorePerString = avgScorePER + ""; }
+        if(totalGamesSQU != 0) { avgScoreSQU = totalScoreSQU / totalGamesSQU; avgScoreSquString = avgScoreSQU + ""; }
 
         //set stats text
-        String statsText = "(" + totalGamesADD + ") · ADD Avg: " + averageScoreADD + "%" +
-        "\n" + "(" + totalGamesSUB + ") · SUB Avg: " + averageScoreSUB + "%" +
-        "\n" + "(" + totalGamesMUL + ") · MUL Avg: " + averageScoreMUL + "%" +
-        "\n" + "(" + totalScoreDIV + ") · DIV Avg: " + averageScoreDIV + "%" +
-        "\n" + "(" + totalScorePER + ") · PER Avg: " + averageScorePER + "%" +
-        "\n" + "(" + totalScoreSQU + ") · SQU Avg: " + averageScoreSQU + "%";
+        String statsText = "ADD Avg · " + avgScoreAddString + "% · (" + totalGamesADD + ")" +
+        "\n" + "SUB Avg · " + avgScoreSubString + "% · (" + totalGamesSUB + ")" +
+        "\n" + "MUL Avg · " + avgScoreMulString + "% · (" + totalGamesMUL + ")" +
+        "\n" + "DIV Avg · " + avgScoreDivString + "% · (" + totalGamesDIV + ")" +
+        "\n" + "PER Avg · " + avgScorePerString + "% · (" + totalGamesPER + ")" +
+        "\n" + "SQU Avg · " + avgScoreSquString + "% · (" + totalGamesSQU + ")";
 
         //update UI
         textViewStatsText.setText(statsText);
     }
+
 
     public void clearGameHistory(View view)
     {
@@ -546,9 +760,13 @@ public class MainActivity extends AppCompatActivity {
 
         //update UI
         textViewHistoryText.setText("");
-        textViewStatsText.setText("ADD Avg: \nSUB Avg: \nMUL Avg: \nDIV Avg: \nPER Avg: \nSQU Avg: ");
+        textViewStatsText.setText("ADD Avg · % · (0) " +
+                                  "\nSUB Avg · % · (0) " +
+                                  "\nMUL Avg · % · (0) " +
+                                  "\nDIV Avg · % · (0) " +
+                                  "\nPER Avg · % · (0) " +
+                                  "\nSQU Avg · % · (0) ");
     }
-
 
 
     public String setCalendarDate(Calendar value, String type)
@@ -617,4 +835,109 @@ public class MainActivity extends AppCompatActivity {
         //return value
         return formattedString;
     }
+
+
+    public String formattedDivisionAnswerString(double value)
+    {
+        //variables
+        String answer = Double.toString(value);
+        String start = "";
+        String end = "";
+        int length = answer.length();
+        //Pattern pattern = Pattern.compile(".{4}(.{3}).*");
+        //Matcher matcher = pattern.matcher("test");
+
+        //check length
+        if(length == 1) { start = answer.substring(0, 1); end = answer.substring(0, 1); }
+        else if(length == 2) { start = answer.substring(0, 1); end = answer.substring(0, 2); }
+        else if(length == 3) { start = answer.substring(0, 1); end = answer.substring(1, 3); }
+        else if(length == 4) { start = answer.substring(0, 1); end = answer.substring(2, 4); }
+        else if(length > 4) { answer = answer.substring(0, 4); start = answer.substring(0, 1); end = answer.substring(3, 4); }
+
+        //check start
+        //???
+
+        //check end
+        if(end.equals(".")) { answer = answer.replace(".", ""); }
+        else if(end.equals(".0")) { answer = answer.replace(".0", ""); }
+
+        //check null
+        //???
+
+        //return value
+        return answer;
+    }
+
+
+    public String formattedPercentagesAnswerString(double value)
+    {
+        //variables
+        String answer = Double.toString(value);
+        String start = "";
+        String end = "";
+        int length = answer.length();
+        //Pattern pattern = Pattern.compile(".{4}(.{3}).*");
+        //Matcher matcher = pattern.matcher("test");
+
+        //check length
+        if(length == 1) { start = answer.substring(0, 2); end = answer.substring(0, 1); }
+        else if(length == 2) { start = answer.substring(0, 2); end = answer.substring(0, 2); }
+        else if(length == 3) { start = answer.substring(0, 2); end = answer.substring(1, 3); }
+        else if(length == 4) { start = answer.substring(0, 2); end = answer.substring(2, 4); }
+        else if(length > 4) { answer = answer.substring(0, 4); start = answer.substring(0, 2); end = answer.substring(3, 4); }
+
+        //check start
+        if(start.equals("1.")) { answer = answer.replace("1.", "1"); }
+        else if(start.equals("0."))
+        {
+            if(answer.length() == 2) { answer = answer.replace("0.", "") + 0; }
+            else { answer = answer.replace("0.", ""); }
+        }
+
+        if(answer.contains(".0")) { answer = answer.replace(".0", "0"); }
+        if(answer.contains(".")) { answer = answer.replace(".", ""); }
+
+        //check end
+        //???
+
+        //check null
+        //???
+
+        //return value
+        return answer + "%";
+    }
+
+
+    public String formattedSquareRootAnswerString(double value)
+    {
+        //variables
+        String answer = Double.toString(value);
+        String start = "";
+        String end = "";
+        int length = answer.length();
+        //Pattern pattern = Pattern.compile(".{4}(.{3}).*");
+        //Matcher matcher = pattern.matcher("test");
+
+        //check length
+        if(length == 1) { start = answer.substring(0, 1); end = answer.substring(0, 1); }
+        else if(length == 2) { start = answer.substring(0, 1); end = answer.substring(0, 2); }
+        else if(length == 3) { start = answer.substring(0, 1); end = answer.substring(1, 3); }
+        else if(length == 4) { start = answer.substring(0, 1); end = answer.substring(2, 4); }
+        else if(length > 4) { answer = answer.substring(0, 4); start = answer.substring(0, 1); end = answer.substring(3, 4); }
+
+        //check start
+        //???
+
+        //check end
+        if(end.equals(".")) { answer = answer.replace(".", ""); }
+        else if(end.equals(".0")) { answer = answer.replace(".0", ""); }
+
+        //check null
+        //???
+
+        //return value
+        return answer;
+    }
+
+
 }
