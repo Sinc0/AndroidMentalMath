@@ -1,5 +1,5 @@
 /****** namespace ******/
-package android.example.simplemathgame;
+package android.mental.math;
 
 
 /****** includes ******/
