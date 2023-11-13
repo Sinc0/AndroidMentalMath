@@ -46,9 +46,11 @@ public class MainActivity extends AppCompatActivity {
     boolean gameIsActive = false;
     String problemType = "";
 
+
     //arrays
     ArrayList<Integer> answerMathProblem = new ArrayList<>();
     ArrayList<Double> answerMathProblemDouble = new ArrayList<>();
+
 
     //widgets
     Button buttonStart;
@@ -77,6 +79,7 @@ public class MainActivity extends AppCompatActivity {
     ConstraintLayout Tab2;
     ConstraintLayout Tab3;
     LinearLayout BottomMenu;
+
 
     //on startup
     @Override protected void onCreate(Bundle savedInstanceState) {
@@ -109,19 +112,13 @@ public class MainActivity extends AppCompatActivity {
         Tab3 = findViewById(R.id.Tab3);
         BottomMenu = findViewById(R.id.BottomMenu);
 
-        //set toast time is up
+        //set toasts
         toastTimeIsUp = Toast.makeText(getApplicationContext(), "Time is up", Toast.LENGTH_SHORT);
         toastTimeIsUp.setGravity(1,0, 160);
-
-        //set toast out of guesses
         toastOutOfGuessesMessage = Toast.makeText(getApplicationContext(), "All Guesses Used", Toast.LENGTH_SHORT);
         toastOutOfGuessesMessage.setGravity(1, 0, 120);
-
-        //set toast answer correct
         toastWinMessage = Toast.makeText(getApplicationContext(), "Success!", Toast.LENGTH_SHORT);
         toastWinMessage.setGravity(1,0, 140);
-
-        //set toast guesses left
         toastGuessesLeft = Toast.makeText(getApplicationContext(), String.valueOf(guessesCounter), Toast.LENGTH_SHORT);
 
         //set game history
@@ -139,6 +136,7 @@ public class MainActivity extends AppCompatActivity {
             { saveGame(totalQuestions, totalCorrectAnswers); resetGame(); }
         };
     }
+
 
     //functions
     public void resetGame()
@@ -210,11 +208,11 @@ public class MainActivity extends AppCompatActivity {
         buttonNumber3.setVisibility(visible);
         textViewMathProblem.setVisibility(visible);
         textViewSecondsCounter.setVisibility(visible);
-        //textViewTotalQuestions.setVisibility(visible);
         textViewTotalCorrectAnswers.setVisibility(visible);
         textViewTotalWrongAnswers.setVisibility(visible);
-        //textViewTotalGuessesLeft.setVisibility(visible);
         BottomMenu.setVisibility(invisible);
+        //textViewTotalQuestions.setVisibility(visible);
+        //textViewTotalGuessesLeft.setVisibility(visible);
         textViewTotalQuestions.setText("0");
         textViewTotalCorrectAnswers.setText("0");
         textViewTotalWrongAnswers.setText("0");

@@ -4,9 +4,9 @@
 - LoC: ~
 - [Logo]()
 - Features:
-- \--- Select from 6 math categories
-- \--- Check history
-- \--- Check stats
+- \--- select from 6 math categories
+- \--- check history
+- \--- check stats
 
 ### Technologies
 - [Java](https://www.java.com/en/)
