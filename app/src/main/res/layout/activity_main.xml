@@ -398,7 +398,7 @@
                     android:layout_marginLeft="0dp"
                     android:layout_marginTop="0dp"
                     android:gravity="left"
-                    android:text="#0 - 3 Nov - MUL - 20%"
+                    android:text=""
                     android:textColor="#ffffff"
                     android:textSize="20sp"
                     android:textStyle="normal" />
@@ -450,6 +450,87 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/textViewAboutText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:gravity="center"
+            android:text="This is a student project, \nmade to learn about Android Studio."
+            android:textColor="#ffffff"
+            android:textSize="20sp"
+            android:textStyle="normal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@id/textViewAboutTitle" />
+
+        <TextView
+            android:id="@+id/textViewPrivacyPolicyTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:text="Privacy Policy"
+            android:textColor="#ffffff"
+            android:textSize="26sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/textViewAboutText" />
+
+        <TextView
+            android:id="@+id/textViewPrivacyPolicyText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="149dp"
+            android:layout_marginTop="30dp"
+            android:gravity="left"
+            android:text="Collects Account Data: No
+                         \nCollects Personal Data: No
+                         \nCollects Device Data: No
+                         \nCollects Metrics Data: No
+                         \nCollects Diagnostics Data: No
+                         \nCollects Location Data: No
+                         \nCollects Financial Data: No
+                         \nCollects Messages Data: No
+                         \nCollects Media Data: No
+                         \nUses Cookies: No
+                         \nUses Local Storage: Yes
+                         \nLinks to Other Websites: No
+                         \nPolicy Might Change: Yes"
+            android:textColor="#ffffff"
+            android:textSize="20sp"
+            android:textStyle="normal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@id/textViewPrivacyPolicyTitle" />
+
+        <TextView
+            android:id="@+id/textViewContactTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:text="Contact"
+            android:textColor="#ffffff"
+            android:textSize="26sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/textViewPrivacyPolicyText" />
+
+        <TextView
+            android:id="@+id/textViewContactText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:gravity="center"
+            android:text="sinco.developer@gmail.com"
+            android:textColor="#ffffff"
+            android:textSize="20sp"
+            android:textStyle="normal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@id/textViewContactTitle" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <!-- Bottom Menu -->
@@ -468,13 +549,13 @@
         <Button
             android:id="@+id/buttonTab1"
             style="@android:style/Widget.Button"
-            android:layout_width="40dp"
-            android:layout_height="49dp"
+            android:layout_width="49dp"
+            android:layout_height="64dp"
+            android:layout_marginBottom="1dp"
             android:layout_weight="1"
-            android:background="@android:color/transparent"
+            android:background="@drawable/icon_play"
             android:onClick="changeTab"
             android:tag="Tab1"
-            android:text="1"
             android:textSize="34sp"
             android:textStyle="bold"
             tools:visibility="visible" />
@@ -486,12 +567,12 @@
             android:layout_width="40dp"
             android:layout_height="49dp"
             android:layout_marginLeft="40dp"
+            android:layout_marginTop="1dp"
             android:layout_marginRight="40dp"
             android:layout_weight="1"
-            android:background="@android:color/transparent"
+            android:background="@drawable/icon_history"
             android:onClick="changeTab"
             android:tag="Tab2"
-            android:text="2"
             android:textSize="34sp"
             android:textStyle="bold"
             android:visibility="visible" />
@@ -503,10 +584,9 @@
             android:layout_width="40dp"
             android:layout_height="49dp"
             android:layout_weight="1"
-            android:background="@android:color/transparent"
+            android:background="@drawable/icon_about"
             android:onClick="changeTab"
             android:tag="Tab3"
-            android:text="3"
             android:textSize="34sp"
             android:textStyle="bold"
             android:visibility="visible" />

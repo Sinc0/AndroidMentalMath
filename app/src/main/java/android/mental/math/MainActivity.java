@@ -42,7 +42,7 @@ public class MainActivity extends AppCompatActivity {
     int gone = 8;
     int totalCorrectAnswers = 0;
     int totalWrongAnswers = 0;
-    int maxQuestions = 9;
+    int maxQuestions = 60;
     boolean gameIsActive = false;
     String problemType = "";
 
