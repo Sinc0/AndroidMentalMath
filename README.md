@@ -33,4 +33,4 @@
 - [XML - Bottom Menu](https://github.com/Sinc0/AndroidMentalMath/blob/master/app/src/main/res/layout/activity_main.xml#L536-L593)
 
 ### Releases
-- [Android]()
+- [Android](https://github.com/Sinc0/AndroidMentalMath/releases/download/1.0.0/unsigned-amm-1.0.0.apk)
