@@ -319,9 +319,9 @@ public class MainActivity extends AppCompatActivity {
             correctAnswerNumber = numberA * numberB;
 
             //set wrong answers
-            wrongAnswerOne = 1 + randomNumber.nextInt(99) * 2;
-            wrongAnswerTwo = 1 + randomNumber.nextInt(99) * 2;
-            wrongAnswerThree = 1 + randomNumber.nextInt(99) * 2;
+            wrongAnswerOne = 1 + randomNumber.nextInt(99) * numberB;
+            wrongAnswerTwo = 1 + randomNumber.nextInt(99) * numberB;
+            wrongAnswerThree = 1 + randomNumber.nextInt(99) * numberB;
 
             //convert from int to string
             A = Integer.toString(numberA);
@@ -464,7 +464,7 @@ public class MainActivity extends AppCompatActivity {
             //set wrong answers
             wrongAnswerOneDouble = correctAnswerNumberDouble * 2;
             wrongAnswerTwoDouble = correctAnswerNumberDouble / 2;
-            wrongAnswerThreeDouble = correctAnswerNumberDouble * 4;
+            wrongAnswerThreeDouble = correctAnswerNumberDouble * 1.5;
 
             //convert from double to string
             A = Double.toString(numberA);
