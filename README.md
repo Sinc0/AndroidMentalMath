@@ -16,6 +16,7 @@
 ### Code
 - [File - Java](https://github.com/Sinc0/AndroidMentalMath/blob/master/app/src/main/java/android/mental/math/MainActivity.java)
 - [File - XML](https://github.com/Sinc0/AndroidMentalMath/blob/master/app/src/main/res/layout/activity_main.xml)
+###
 - [Java - Start Game](https://github.com/Sinc0/AndroidMentalMath/blob/master/app/src/main/java/android/mental/math/MainActivity.java#L183-L227)
 - [Java - Reset Game](https://github.com/Sinc0/AndroidMentalMath/blob/master/app/src/main/java/android/mental/math/MainActivity.java#L142-L180)
 - [Java - Add Math Problem](https://github.com/Sinc0/AndroidMentalMath/blob/master/app/src/main/java/android/mental/math/MainActivity.java#L230-L502)
@@ -27,10 +28,8 @@
 - [Java - Get Total Games Saved](https://github.com/Sinc0/AndroidMentalMath/blob/master/app/src/main/java/android/mental/math/MainActivity.java#L670-L678)
 - [Java - Clear Game History](https://github.com/Sinc0/AndroidMentalMath/blob/master/app/src/main/java/android/mental/math/MainActivity.java#L749-L767)
 - [Java - Change Tab](https://github.com/Sinc0/AndroidMentalMath/blob/master/app/src/main/java/android/mental/math/MainActivity.java#L547-L561)
+###
 - [XML - Tab 1: Play](https://github.com/Sinc0/AndroidMentalMath/blob/master/app/src/main/res/layout/activity_main.xml#L14-L322)
 - [XML - Tab 2: History](https://github.com/Sinc0/AndroidMentalMath/blob/master/app/src/main/res/layout/activity_main.xml#L324-L427)
 - [XML - Tab 3: About](https://github.com/Sinc0/AndroidMentalMath/blob/master/app/src/main/res/layout/activity_main.xml#L429-L534)
 - [XML - Bottom Menu](https://github.com/Sinc0/AndroidMentalMath/blob/master/app/src/main/res/layout/activity_main.xml#L536-L593)
-
-### Releases
-- [Android](https://github.com/Sinc0/AndroidMentalMath/releases/download/1.0.0/unsigned-amm-1.0.0.apk)
